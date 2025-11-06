@@ -12,3 +12,31 @@ Name : Absar
 Feedback: Added time for accurate logging.
 Time: 2025-11-06 17:34:07.123257 
 ----------------------------------------
+Name : Tester1
+Feedback: t1 : Testing for allfeedbacks
+Time: 2025-11-06 17:48:41.538087 
+----------------------------------------
+Name : Tester2
+Feedback: t2 : Testing All feedbacks
+Time: 2025-11-06 17:52:48.263722 
+----------------------------------------
+Name : Tester3
+Feedback: t1 : Testing func allfeedbacks 
+Time: 2025-11-06 18:10:59.144953 
+----------------------------------------
+Name : Tester4
+Feedback: t2 : Testing func allfeedbacks 
+Time: 2025-11-06 18:11:07.392202 
+----------------------------------------
+Name : Tester4
+Feedback: Testing Encoding
+Time: 2025-11-06 19:14:08.187950 
+----------------------------------------
+Name : Tester4
+Feedback: t4.2 : Testing allfeedbacks function.
+Time: 2025-11-06 19:18:00.618375 
+----------------------------------------
+Name : Tester4
+Feedback: t4.3 testagain allfeedbacks.
+Time: 2025-11-06 19:18:23.506346 
+----------------------------------------
