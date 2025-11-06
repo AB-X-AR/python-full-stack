@@ -1,33 +1,21 @@
-from flask import Flask, render_template
-
-
+from flask import Flask, render_template, request
+import os
 app = Flask(__name__)
 
 @app.route('/')
-def homepage(name):
-    return render_template("home.html")
-    
-@app.route('/feedback')
-def feedback():
+def home():
     return render_template("feedback.html")
 
-@app.route('/user/<name>')
-def user(name):
-    return render_template("home.html", username=name)
-
-@app.route('/square/<int:num>')
-def squared(num):
-    snum = num ** 2
-    return render_template("home.html", pizza=snum)
 
 
+@app.route('/submit', methods=['POST'])
+def submit():
+    name = request.form['name']
+    feedback = request.form['feedback']
+    with open('E:/PROJECTS/PYTHON/pyfullstack/FLASKPYT/Day2/templates/trash', 'a') as trashadd:
+        trashadd.write(f"Name : {name}\nFeedback: {feedback}\n{'-'*40}\n")
+    return render_template("thankyou.html", name=name, feedback=feedback)
 
-@app.route('/items')
-def items():
-    datai = ["Flask", "Jinja2", "Html"]
-    return render_template("home.html", tech=datai)
 
-
-
-if __name__ == "__main__":
+if __name__=="__main__":
     app.run(debug=True)

@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
-    <link rel="stylesheet" href="/Day2/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Feedback Form</h2>
-    <p id="paralorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium eum nihil consectetur quod voluptatibus, dolorem in totam alias sint, voluptatem vel, obcaecati facilis porro quo quam aut omnis animi doloribus?</p>
-    <input type="text" >
+    <h1>Feedback Form Page</h1>
+    <form action="/submit" method="post">
+        <input type="text" name="name" placeholder="Your Name" required><br><br>
+        <textarea name="feedback" placeholder="Write Feedback Here" required></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
 
 </body>
 </html>
