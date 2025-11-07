@@ -10,9 +10,26 @@
     {% extends "base.html" %}
     {% block title %}Projects{% endblock %}
     {% block content %}
-    <a href="http://127.0.0.1:5001/">
-        <img src="/static/images/userfeedback.jpg" alt="feedback.jpg" title="Feedbacks" id="feedimg">
-    </a>
+    <div class="project-grid">
+        <div class="project-card">
+            <a href="http://127.0.0.1:5001/">
+                <img src="/static/images/userfeedback.jpg" alt="Feedback Project" id="feedimg">
+                <div class="project-title">Feedback Collector</div>
+            </a>
+        </div>
+        <div class="project-card">
+            <a href="https://github.com/AB-X-AR/DirCop">
+                <img src="/static/images/pf.jpg" alt="DIRCOP">
+                <div class="project-title">DIRCOP</div>
+            </a>
+        </div>
+        <div class="project-card">
+            <a href="https://github.com/AB-X-AR/XTRACTOR">
+                <img src="/static/images/extractorobot.jpg" alt="XTRACTOR">
+                <div class="project-title">XTRACTOR</div>
+            </a>
+        </div>
+    </div>
     {% endblock %}
     
 </body>
