@@ -22,8 +22,8 @@ def submit():
 @app.route('/allfeedbacks')
 def collectfeedbacks():
     return render_template("allfeedbacks.html", all=feedbacklist)
-    
+
 
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
