@@ -1,30 +1,42 @@
-from flask import Flask, render_template, request, redirect, url_for
-import sqlite3
+from flask import Flask, render_template, request, url_for, redirect
+
 
 app = Flask(__name__)
 
+global_validcreds = {'adam':'adam', 'bison':'unsung', 'admin':'admin'}
 
-#scursor.execute("INSERT INTO tasks (title, status) VALUES (?, ?)", ("Day 4 Learning Flask", "Complete"))
+@app.route('/')
+def home():
+    return render_template("index.html")
+
+#LOGIN PAGE
+@app.route('/login', methods=['GET','POST'])
+def login():
+    if request.method ==  'POST':
+        user = request.form['username']
+        passi = request.form['password']
+        if user in global_validcreds:
+            posto = global_validcreds[user]
+            print(f"Posto {posto} for User {user}")
+            if posto == passi:
+                return render_template("dashboard.html", username=user)
+            else:
+                return f" Wrong Password "
+        else:
+            return f"User Not Found"
+    return render_template("login.html")
 
 
-def get_db():
-    conn = sqlite3.connect('tasks.db')
-    conn.row_factory = sqlite3.Row
-    
-    return conn
-
-def init_db():
-    with get_db() as conn: #with get_db() as conn auto commits & closes after use.
-        conn.execute('''CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, status NOT NULL DEFAULT  'Pending')''')
-
-
-init_db()
-
-@app.route('/add')
-def add():
-    pass
-
-
+#REGISTER PAGE
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        user = request.form['username']
+        password = request.form['password']
+        global_validcreds[user] = password
+        print(global_validcreds)
+        return redirect("/login")
+    return render_template("register.html")
 
 
 if __name__ == "__main__":
@@ -32,48 +44,3 @@ if __name__ == "__main__":
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""#----- DATABASE SECTION ------
-
-def get_db():
-    conn = sqlite3.connect(DB)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-def init_db():
-    with get_db() as conn:
-        conn.execute('''
-                     CREATE TABLE IF NOT EXISTS tasks ( 
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        title TEXT NOT NULL,
-                        status TEXT NOT NULL DEFAULT 'Pending'
-                     )
-        ''')
-        
-init_db()
-
-# --- Routes ---
-
-@app.route('/')
-def index():
-    conn = get_db()
-    tasks = conn.execute('SELECT * FROM tasks ORDER BY id DESC').fetchall()
-    return render_template('index.html', tasks=tasks)
-
-@app.route('/edit')
-def edit 
-"""
