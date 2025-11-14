@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+</head>
+<body>
+    <table border="4" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+
+    {% for u in users %}
+    <tr>
+        <td>{{ u['id'] }}</td>
+        <td>{{ u['uname'] }}</td>
+        <td>{{ u['email'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+</html>

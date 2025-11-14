@@ -4,34 +4,33 @@ app = Flask(__name__)
 
 feeds = []
 
+
+
 def get_db():
-    conn = sqlite3.connect('feedbackstable.db')
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    return cursor, conn
-
-def init_db():
-    with get_db() as conn:
-        cursor.execute('''CREATE TABLE IF NOT EXISTS feedbackstable (id INTEGER PRIMARY KEY AUTOINCREMENT, uname TEXT, perfeedback TEXT)''')
-
-init_db()
+    conn = sqlite3.connect('userfeedback.db')
+    conn.row_factory = sqlite3.Row #it lets us : row['name'] instead of row[1]
+    return conn
 
 @app.route('/')
 def home():
-    cursor.execute("SELECT * FROM feedbackstable.db")
     return render_template("home.html")
 
+@app.route('/adduser', methods=['POST'])
+def adduser():
+    uname = request.form['username']
+    email = request.form['email']
+    conn = get_db()
+    conn.execute("INSERT INTO userfeeds (uname, email) VALUES (?, ?)", (uname, email))
+    conn.commit()
+    conn.close()
+    return redirect("/allusers")
 
-@app.route('/addfeedback', methods=['POST'])
-def feedbacks():
-    username = request.form['username']
-    feedback = request.form['feedback']
-    feeds.append(username)
-    feeds.append(feedback)
-    return render_template('addfeedback.html', username=username, feedback=feedback)
-
-print(feeds)
-
+@app.route('/allusers') 
+def allusers():
+    conn = get_db()
+    rows = conn.execute("SELECT * FROM userfeeds").fetchall()
+    conn.close()
+    return render_template("allusers.html", users=rows)
 
 
 if __name__ == "__main__":
