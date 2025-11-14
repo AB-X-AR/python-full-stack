@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h3>LOGIN PAGE</h3>
     <form method="POST">
-        <input type="text" name="username" placeholder="Enter Useranme Here">
-        <input type="text" name="password" placeholder="Password">
-        <button type="submit">Submit</button>
-    </form>
-    
-    <h5>Not Signed Up Yet? Click On </h5>
-    <a href="/register">Register</a>
+        <div class="login-container">
+            <h1>LOGIN</h1>
+            
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Username">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" name="password" id="password" placeholder="••••••••">
+            </div>
+            
+            <button type="submit">SIGN IN</button>
+        
+            
+        </form>
+        <div class="footer">
+            Don't have an account? <a href="/register">Sign up</a>
+        </div>
+    </div>
 </body>
 </html>
